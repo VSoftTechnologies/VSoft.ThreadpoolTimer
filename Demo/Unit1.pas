@@ -57,7 +57,11 @@ begin
   FTimer := TThreadPoolTimerFactory.CreateTimer(1000,0,
   procedure (context : UIntPtr)
   begin
-    Memo1.Lines.Add(IntToStr(GetTickCount));
+   TThread.Queue(nil,
+    procedure
+    begin
+      Memo1.Lines.Add(IntToStr(GetTickCount));
+    end);
   end);
   FTimer2 := TThreadPoolTimerFactory.CreateTimer(10, 0, Self.Callback);
 end;
