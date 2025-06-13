@@ -77,7 +77,8 @@ type
   PTPCallbackEnviron = ^TTPCallbackEnviron;
 
 
-  TFNTPTimerCallback = TFarProc;
+  PTP_TIMER_CALLBACK = procedure (Instance: PTP_CALLBACK_INSTANCE; {var} Context: PPointer; Timer: PTP_TIMER); stdcall;
+
 
   _TP_CALLBACK_INSTANCE = record
   end;
@@ -90,7 +91,7 @@ type
   PTPCallbackInstance = ^TTPCallbackInstance;
 
 
-  function CreateThreadpoolTimer(pfnti: TFNTPTimerCallback; pv: Pointer; pcbe: PTPCallbackEnviron): PTPTimer; stdcall;
+  function CreateThreadpoolTimer(pfnti: PTP_TIMER_CALLBACK; pv: Pointer; pcbe: PTPCallbackEnviron): PTPTimer; stdcall;
   {$EXTERNALSYM CreateThreadpoolTimer}
   procedure CloseThreadpoolTimer(pti: PTPTimer); stdcall;
   {$EXTERNALSYM CloseThreadpoolTimer}
@@ -159,7 +160,7 @@ function SetThreadpoolTimerEx; external kernel32 name 'SetThreadpoolTimerEx';
 procedure WaitForThreadpoolTimerCallbacks; external kernel32 name 'WaitForThreadpoolTimerCallbacks';
 
 
-procedure TimerCallback(Instance : PTP_CALLBACK_INSTANCE; context : Pointer; timer  : PTP_TIMER);cdecl;
+procedure TimerCallback(Instance : PTP_CALLBACK_INSTANCE; context : Pointer; timer  : PTP_TIMER);stdcall;
 begin
   TWindowsThreadpoolTimer(context).DoTimerCallback;
 end;
