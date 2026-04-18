@@ -2,7 +2,7 @@
  "metadata": {
   "id": "VSoft.ThreadpoolTimer",
   "version": "0.9.1",
-  "description": "Command Line Parser",
+  "description": "ThreadPool Timer",
   "authors": "Vincent Parrett",
   "projectUrl": "https://github.com/VSoftTechnologies/VSoft.ThreadpoolTimer",
   "repositoryUrl": "https://github.com/VSoftTechnologies/VSoft.ThreadpoolTimer",

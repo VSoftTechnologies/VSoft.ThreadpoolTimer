@@ -1,0 +1,43 @@
+# DPM package spec file
+# Used to build packages
+
+min client version: 1.0
+# metadata describes the package to the user
+metadata:
+  id: VSoft.ThreadpoolTimer
+  version: 0.9.1
+  authors: [ Vincent Parrett ]
+  description: Threapool Timer
+  projectUrl: https://github.com/VSoftTechnologies/VSoft.ThreadpoolTimer
+  repositoryUrl: https://github.com/VSoftTechnologies/VSoft.ThreadpoolTimer
+  license: Apache-2.0
+  readme: README.md
+  copyright: Vincent Parrett and contributors
+  tags: [ timer, threadpool ]
+  repositoryCommit: Id:4db686c96e10a442950f6f24de7088d66f578b94
+
+# define variable defaults - can be overriden in targetPlatforms
+variables:
+  packageSource: "Rad Studio $compilernoprefix$"
+
+# package folder names are a mess. 
+targetPlatforms:
+  - compiler from: delphixe2
+    compiler to: delphi10.4
+    platforms: [ win32, win64 ]
+  - compiler from: delphi11
+    compiler to: delphi13
+    platforms: [ win32, win64 ]
+    variables:
+      packageSource: "Rad Studio $compilernoprefix$.0"
+
+templates:
+  - name: default
+    source:
+      - src: ./source/*.pas
+      - src: ./packages/$packageSource$/*.dpk
+        dest: ./packages/$packageSource$
+      - src: ./packages/$packageSource$/*.dproj
+        dest: ./packages/$packageSource$
+    build:
+      - project: ./packages/$packageSource$/VSoft.ThreadpoolTimerR.dproj
