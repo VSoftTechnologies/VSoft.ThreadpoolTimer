@@ -14,7 +14,7 @@ metadata:
   readme: README.md
   copyright: Vincent Parrett and contributors
   tags: [ timer, threadpool ]
-  repositoryCommit: Id:4db686c96e10a442950f6f24de7088d66f578b94
+  repositoryCommit: #HASH#
 
 # define variable defaults - can be overriden in targetPlatforms
 variables:
